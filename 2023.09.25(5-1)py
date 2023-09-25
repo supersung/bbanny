@@ -1,0 +1,94 @@
+""" import random
+
+print(random.randint(1,100))
+
+import mod.utils as mu
+ """
+""" my_list = ['apple', 'banana', 'cherry']
+print(mu.rd_int(1,100))
+print(mu.rd_list(my_list))
+print(mu.rd_rd())
+print(mu.rd_nmvar())
+ """
+
+""" import datetime
+from datetime import datetime as dt """
+
+""" print(dt.now()) """
+
+""" date_string = '2021-07-08'
+date_object = dt.strptime(date_string, '%Y-%m-%d')
+print(date_object)
+
+date_object = dt.now()
+date_string = date_object.strftime('%Y-%m-%d')
+print(date_string) """
+
+""" import datetime as dt
+import mod.utils as mu
+ """
+""" 
+dtnow = mu.get_dtnow()
+print(dtnow)
+
+ret = mu.cvt_time2str()
+print(ret)
+ """
+ 
+""" import os
+
+print(os.getcwd()) #현재 디렉토리 출력
+
+os.chdir('../')
+
+print(os.getcwd())
+
+print(os.listdir())
+
+os.mkdir('new_directory')
+print(os.listdir())
+
+
+
+os.rmdir('new_directory')
+print(os.listdir()) """
+
+""" import mod.utils as mu
+import os """
+""" print(mu.get_curdir())
+
+mu.os_mkdir("python2")
+print(os.listdir())
+ """
+""" mu.os_rmdir("python2")
+os.listdir """
+
+""" list = []
+
+list.append(1)
+list.append(2)
+list.append(3)
+list.append(4)
+list.append(5)
+
+print(list)
+
+top = list.pop()
+print(top)
+print(list)
+print(len(list)) """
+
+exlist = []
+
+exlist.append(1)
+exlist.append(2)
+exlist.append(3)
+exlist.append(4)
+exlist.append(5)
+
+print(exlist)
+
+front = exlist.pop(0)
+print(front)
+print(exlist)
+print(len(exlist))
