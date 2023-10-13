@@ -214,3 +214,7 @@ plt.ylabel('y label')
 plt.title('Example plot')
 
 plt.show()
+
+
+for i in range(1,6):
+    print(i)
