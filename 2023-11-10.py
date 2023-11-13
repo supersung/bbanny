@@ -1,49 +1,48 @@
-
-
-""" import multiprocessing
+""" import multiprocessing as mp
 import time
 
+import multiprocessing
+
 def counter(num):
-    for i in range(5):
-        print(f"Counter {num} - Step {i + 1}")
-        time.sleep(1)
+    print(f"Counter {num} starting")
+    # Your counter logic goes here
+    print(f"Counter {num} ending")
 
+if __name__ == "__main__":
+    process1 = multiprocessing.Process(target=counter, args=("1num",))
+    process2 = multiprocessing.Process(target=counter, args=("2num",))
+    process3 = multiprocessing.Process(target=counter, args=("3num",))
 
-process1 = multiprocessing.Process(target=counter, args=("1num",))
-process2 = multiprocessing.Process(target=counter, args=("2num",))
-process3 = multiprocessing.Process(target=counter, args=("3num",))
+    process1.start()
+    process2.start()
+    process3.start()
 
+    process1.join()
+    process2.join()
+    process3.join() """
+    
 
-process1.start()
-process2.start()
-process3.start()
+#비등기 처리
 
-
-process1.join()
-print("Process 1 finished")
-process2.join()
-print("Process 2 finished")
-process3.join()
-print("Process 3 finished")
-
-print("All processes have finished.") """
-
-import asyncio
+""" import asyncio
 import random as rd
 import time
 
-""" async def tester(name):
+async def tester(name):
     snum = rd.randint(10,20)
-    print(f"{name} - {snum} - {1}")
-    for i in range(snum) :
+    print(f"{name} - {snum}")
+    for i in range (snum) :
         await asyncio.sleep(1)
-        print(f"{name} - {snum} - {i}")
+        print(f"end of {name}")
         
-        
-async def main():
-    task1 = asyncio.create_task(tester("1test"))
-    task2 = asyncio.create_task(tester("2test"))
-    task3 = asyncio.create_task(tester("3test"))
+    print(f"end of {name}")
+    
+async def main() :
+    task1 = asyncio.create_task(teaster("1test"))
+    
+    task2 = asyncio.create_task(teaster("2test"))
+    
+    task3 = asyncio.create_task(teaster("3test"))
     
     print("start")
     start = time.time()
@@ -51,23 +50,25 @@ async def main():
     await task2
     await task3
     end = time.time()
-    print("end",end-start)
-    
+    print("end")
     
 if __name__ == '__main__' :
-    asyncio.run(main()) """
+    asyncio.run(main())
+ """
+ 
+ #비등기 처리2
+ 
+""" import asyncio
 
-
-""" async def worker1():
-    for i in range(1,6) :
-        print(f"Task1 : Step {i}")
+async def worker1():
+    for i in range(1, 6):
+        print(f"Task 1 : Step {i}")
         await asyncio.sleep(1)
         
 async def worker2():
-    for i in range(1,4) :
-        print(f"Task2 : Step {i}")
+    for i in range(1, 4):
+        print(f"Task 2 : Step {i}")
         await asyncio.sleep(2)
-        
         
 async def main():
     
@@ -79,95 +80,96 @@ async def main():
     await task_2
     print("end task")
     
+if __name__ == '__main__' :
+    asyncio.run(main())     """
     
-if __name__ == '__main__':
-    asyncio.run(main()) """
-    
+#스케쥴처리
+
+""" import time
 import sched
 
-""" start = time.time()
+start = time.time()
 
 def tester(name):
-    print(f"start-time {time.time() - start}")
-    for i in range(3):
+    print(f"start-time{time.time()- start}")
+    for i in range(3) :
         print(f"{name} - {i}")
-        
         
     print(f"end of {name}")
     
-s = sched.scheduler()
-s.enter(5, 1, tester, ('1num',))
-s.enter(3, 1, tester, ('1num',))
-s.enter(7, 1, tester, ('1num',))
-s.run() """
+def run() :   
+    s = sched.scheduler()
+    s.enter(5, 1, tester, ('1num',))
+    s.enter(5, 1, tester, ('4num',))
+    s.enter(3, 1, tester, ('2num',))
+    s.enter(7, 1, tester, ('3num',))
+    s.run()
 
+# if __name__ == "__main__"
+#     main()
+#     print("end") """
+
+#문자열 비교
 """ import diff_match_patch.diff_match_patch as dm
 
 
 origin = "To be or not to be, That is a question!"
-copyed = "To be or not to be, That is the answer!"
+copyed = "To be or not to be, That is a question!"
 
 dmp = dm()
-diff = dmp.diff_main(origin,copyed)
-print (diff)
+diff = dmp.diff_main(origin, copyed)
+print(diff)
 dmp.diff_cleanupSemantic(diff)
 
 for d in diff:
     print(d) """
     
-""" from faker import Faker
+#faker 임의 데이터
 
+""" from faker import Faker as fk
 
-fake = Faker("ko_KR")
+temp = fk()
+print(temp.name())
 
-
-fake_name = fake.name()
-fake_address = fake.address()
-fake_postcode = fake.postcode()
-fake_country = fake.country()
-fake_company = fake.company()
-fake_job = fake.job()
-fake_phone_number = fake.phone_number()
-fake_email = fake.email()
-fake_user_name = fake.user_name()
-fake_ipv4_private = fake.ipv4_private()
-fake_catch_phrase = fake.catch_phrase()
-fake_color_name = fake.color_name()
-
-
-print(f"이름: {fake_name}")
-print(f"주소: {fake_address}")
-print(f"우편번호: {fake_postcode}")
-print(f"국가: {fake_country}")
-print(f"회사: {fake_company}")
-print(f"직업: {fake_job}")
-print(f"전화번호: {fake_phone_number}")
-print(f"이메일: {fake_email}")
-print(f"사용자명: {fake_user_name}")
+# temp = Faker("ko-KR")
+with open("fktemp.csv", "w", newline = '') as f :
+    for i in range(30) :
+        f.write(temp.name() + "," +
+            temp.address() + "," +
+            temp.postcode() + "," +
+            temp.company() + "," +
+            temp.job() + "," +
+            temp.phone_number() + "," +
+            temp.email() + "," +
+            temp.user_name() + "," +
+            temp.ipv4_private() + "," +
+            temp.ipv4_public() + "," +
+            temp.catch_phrase() + "," +
+            temp.color_name()+ "\n" )
  """
 
-""" import subprocess
+#시스템 명령어 사용
 
-res = subprocess.run(["cmd", "/c", "dir"], capture_output=True, text=True)
+""" import subprocess as sp
 
 
-print("Return Code:", res.returncode)
-print("\n=== Standard Output ===")
-print(res.stdout)
-print("\n=== Standard Error ===")
-print(res.stderr) """
+#res = sp.run(["cmd", "/c", "dir"], capture_output=True)
+#res = sp.run(["cmd", "/c","ipconfig ," /all"])
+res = sp.run(["cmd", "/c", "C:\Program Files\DAUM\PotPlayer\PotPlayerMini64.exe"])
+print(res) """
 
+#에러처리
 
 """ import traceback as tb
 
-def tester():
+def tester() :
     return 1/0
 
 def caller() :
-    tester()
+    tester
     
 def main() :
-    try :
+    try : 
         caller()
         
     except ZeroDivisionError:
@@ -176,44 +178,97 @@ def main() :
     except ValueError :
         print("ve error")
         
-    except Exception as ex:
+    except Exception as ex :
         print("ex error", ex)
         
     else :
         print("ok")
         
     finally :
-        print() """
-        
+        print("end")
+         """
+         
+#웹크롤링
 """ from bs4 import BeautifulSoup as bs
 import requests as rq
 
-url = "https://xkcd.com/2852/"
+# url = "https://xkcd.com/2852/"
+url = "https:news.daum.net/"
 res = rq.get(url)
 
 hmltxt = res.text
-res_html = bs(hmltxt, "html.parser")
+res_html = bs(hmltxt, 'html.parser')
 
 pres = res_html.find("h1")
 print(pres)
-print("\n1-------------------\n")
+print("\n1-----------------------------\n")
 print(pres.get_text().strip())
-print("\n2-------------------\n")
-print(pres.next_element.get_text.strip())
+print("\n2-----------------------------\n")
+print(pres.next_element.get_text().strip())
 print(pres.get_text())
-print("\n6----------------------\n")
+print("\n6-----------------------------\n")
 
+tres = res_html.find("title")
+print(pres)
+print("\n3-----------------------------\n")
+print(tres.next_element)
+print("\n4-----------------------------\n")        
+print(tres.get_text().strip())
 
-fares = res_html.findAll("a")
-for i in fares:
-    print(i.get_text())
-    
-import requests as rq
+fares = res_html.findAll("h1")
+print(fares)
+print("\n5-----------------------------\n")  
+
+clres = res_html.FindAll(class_ = "doc-title")
+print(clres)
+
+print("\n6-----------------------------\n")
+clres = res_html.find(class_ = "head_top")
+print(clrs)
+print(clrs.get_text()) """
+
+#셀렉터로 찾기
+""" 
 from bs4 import BeautifulSoup as bs
-   
+import requests as rq
 
+#url = "https://entertain.daum.net/news"
+url = "https://news.daum.net/"
+res = rq.get(url)
 
+hmltxt = res.text
+res_html = bs(htmltxt, 'html,parser')
 
+item = res_html.select_one("body > div.container-dock")
+
+print(item)
+print(item.get_text())
+
+from bs4 import BeautifulSoup as bs
+import requests as rq
+
+url = "https://table.cafe,daum.net/"
+res = rq.get(url)
+
+hmltxt = res.text
+res_html = bs(htmltxt, 'html,parser')
+item = res_html.select_one("#content_table > div.table_group > div:nth-child(3) > div.item_detail > a > strong")
+
+print(item)
+print(item.get_text())
+
+wt = res_html.select_one("#content_table > div.table_group > div:nth-child(3) > div.item_detail > a > div > span.txt_name")
+print(wt)
+print(wt.get_text())
+
+goods = res_html.select_one("#content_table > div.table_group > div:nth-child(3) > div.item_reply > div > button > strong")
+print(goods)
+print(goods.get_text()) """
+
+#select
+""" 
+from bs4 import BeautifulSoup as bs
+import requests as rq
 
 url = "https://news.daum.net/"
 res = rq.get(url)
@@ -221,18 +276,17 @@ res = rq.get(url)
 hmltxt = res.text
 res_html = bs(hmltxt, 'html.parser')
 
-item = res_html.select_one("body > div.container.do")
+iss = res_html.select("a.wrap_thumb")
+# print(iss)
+print("\n-----------------------------\n")
 
-
-print(item.get_text())    
-
-
-wt = res_html.select_one("#content_table > div.table_group > div:nth-child(3) > div.item_detail > a > div > span.txt_name")
-print(wt.get_text())
-
-
-goods = res_html.select_one("#content_table > div.table_group > div:nth-child(3) > div.item_reply > div > button > strong")
-print(goods.get_text()) """
-
-A
+for i in iss :
+    issue = i.get_text()
+    print(issue)
+    
+print("\n-----------------------------\n")
+ct = res_html.select("a.wrap_thumb")
+for j in ct :
+    c = j.attrs["data-tiara-custom"]
+    print(c+"\n") """
 

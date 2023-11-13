@@ -37,9 +37,10 @@ for j in ct :
     print(c+"\n") """
     
 import os
-from urllib.request import urlretrieve
+import requests as rq
+from urllib.request import urlretrieve as rl
 
-url = "https://news.daum.net/"
+""" url = "https://news.daum.net/"
 res = rq.get(url)
 
 hmltxt = res.text
@@ -59,6 +60,49 @@ for i in imgs:
     linkimgs.append(irs)
     
     
+folder = "imgs/"
+if not os.path.isdir(folder):
+    os.mkdir(folder)
+    
+i = 0
+for ln in linkimgs : 
+    if str(ln).find("//t") == False :
+        print(ln)
+        continue
+    else :
+        pass
+    
+    i += 1
+    rl(ln, folder + f"{i}.jpg") """
+    
+from pandas import Series as sr
+
+""" data = [10, 20,30, 40]
+sdata = sr(data)
+
+print(sdata) """
+
+import numpy as np
+
+""" data = np.arange(1, 5)
+sdata = sr(data)
+
+print(sdata)
+ """
+ 
+""" data = [10,20,30,40]
+sdata = sr(data)
+
+print(sdata.index)
+print(sdata.index.to_list()) """
+
+
+data = [10, 20,30, 40]
+sdata = sr(data)
+
+
+sdata.index = ["a", "b", "c", "d"]
+print(sdata)    
     
 
     
