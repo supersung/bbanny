@@ -97,12 +97,173 @@ print(sdata.index)
 print(sdata.index.to_list()) """
 
 
-data = [10, 20,30, 40]
+""" data = [10, 20,30, 40]
 sdata = sr(data)
 
 
 sdata.index = ["a", "b", "c", "d"]
 print(sdata)    
-    
+     """
+     
+     
+from pandas import Series as sr
 
-    
+""" dt = [10,20,30,40]
+idx = ["a", "b", "c", "d"]
+
+sdata = sr(data=dt, index=idx)
+print(sdata) """
+
+
+""" dt = [10,20,30,40]
+idx = ["a", "b", "c", "d"]
+
+sdata = sr(data=dt, index=idx)
+sd = sdata.reindex(["a", "j", "c"])
+print(sd)
+
+
+sd = sdata.reindex(["b"])
+print(sd)
+
+print(sdata["b"])
+print("\n-------------------\n")
+
+print(sdata.iloc[0])
+print(sdata.iloc[2])
+print("\n--------------\n")
+
+print(sdata.loc["a"])
+print(sdata.loc["d"]) """
+
+
+""" dt = ["alpha", "beta", "charlie", "delta"]
+idx = ["ab", "bc", "cd", "de"]
+
+sdata = sr(data=dt, index=idx)
+
+print(sdata.loc["bc" : "cd"])
+print("\n------------------\n")
+print(sdata.loc["bc" : ])
+print("\n------------------\n")
+print(sdata.loc[:"bc"])
+print("\n------------------\n") """
+
+""" dt = ["사과", "바나나", "수박", "참외"]
+idx = ["가", "나", "다", "라"]
+sdata = sr(data=dt, index=idx)
+
+print(sdata.iloc[1:2])
+print("\n------------------\n")
+print(sdata.iloc[2:])
+print("\n------------------\n")
+print(sdata.iloc[:2])
+print("\n------------------\n") """
+
+
+dt = ["alpha", "beta", "charlie", "delta"]
+idx = ["ab", "bc", "cd", "de"]
+
+sdata = sr(data=dt, index=idx)
+
+""" sdata.loc["cd"] = "echo"
+print(sdata)
+
+print("\n------------------\n")
+sdata.iloc[1] = "fox"
+print(sdata) """
+
+""" sdata.loc["ef"] = "golf"
+print(sdata) """
+
+""" print("\n------------------\n")
+print(sdata.drop("bc")) """
+
+""" s1 = sr([100, 200, 300], index=["a", "b", "c"])
+s2 = sr([100, 200, 300], index=["b", "c", "a"])
+
+sum_res = s1 + s2
+print(sum_res)
+print(sum_res.max())
+print(sum_res.mean())
+print(sum_res.min())
+print("\n------------------\n")
+
+sum_res = s1 - s2
+print(sum_res)
+print(sum_res.max())
+print(sum_res.mean())
+print(sum_res.min())
+print("\n------------------\n")
+
+sub_res = s1 * s2
+print(sum_res)
+print(sum_res.max())
+print(sum_res.mean())
+print(sum_res.min())
+print("\n------------------\n")
+
+sum_res = s1 / s2
+print(sum_res)
+print(sum_res.max())
+print(sum_res.mean())
+print(sum_res.min())
+print("\n------------------\n")
+
+dv_res = s1/10
+print(dv_res) """
+
+
+""" data = {
+    "삼성전자": "전기,전자",
+    "LG전자": "전기,전자",
+    "현대차": "운수장비",
+    "NAVER": "서비스업",
+    "카카오": "서비스업"
+}
+
+sdata = sr(data)
+uniq = sdata.unique()
+print(uniq)
+
+sc=sdata.count()
+print(sc)
+
+sv= sdata.value_counts()
+print(sv)
+ """
+
+""" idx = ["a", "b", "c", "d", "e"]
+s1 = sr([1100, 270, 30, 450, 50], index=idx)
+s2 = sr([150, 740, 810, 40, 25], index=idx)
+
+# 시리즈내 데이터 비
+fil = s1 > 300
+print(fil)
+print("\n------------------\n")
+print(s1[fil])
+print("\n------------------\n")
+
+# 시리즈간 비교
+fil1 = s2 > s1
+print(fil1)
+print("\n------------------\n")
+print(s2[fil1])
+print("\n------------------\n")
+
+
+# 인덱싱 출력
+s2[s2 > s1].index
+print(s2[s2 > s1].index)
+
+print("\n------------------\n") """
+
+idx = ["a", "b", "c", "d", "e"]
+s1 = sr([1100, 270, 30, 450, 50], index=idx)
+s2 = sr([150, 740, 810, 40, 25], index=idx)
+
+sv = s1.sort_values()
+print(sv)
+
+sv1 = s1.sort_values(ascending=False)
+print(sv1)
